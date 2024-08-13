@@ -1,4 +1,4 @@
-from mobil import cars
+from kendaraan import cars
 
 class Dealer:
     def show_all_cars(self):

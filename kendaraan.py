@@ -46,16 +46,14 @@ class MerkMobil:
 
 # Model dari Merk Mobil
 class Mobil(MerkMobil, Spesifikasi, Fitur):
-    DESKRIPSI_MODEL = ""
-    HARGA = 0
 
     def __init__(self, merk:str, model:str, deskripsi:str, harga:int, engine:int, gas:str, power:int, transmission:str, power_outlet:bool, cruise_control:bool, keyless:bool, airbag:bool, sunroof:bool):
         MerkMobil.__init__(self, merk)
         Spesifikasi.__init__(self, engine, gas, power, transmission)
         Fitur.__init__(self, power_outlet, cruise_control, keyless, airbag, sunroof)
         self.model = model
-        Mobil.DESKRIPSI_MODEL = deskripsi
-        Mobil.HARGA = harga
+        self.deskripsi_model = deskripsi
+        self.harga = harga
 
     def spesifikasi(self):
         return Spesifikasi.serialize(self)
@@ -68,8 +66,8 @@ class Mobil(MerkMobil, Spesifikasi, Fitur):
         return {
             "brand": self.merk,
             "model": self.model,
-            "deskripsi": Mobil.DESKRIPSI_MODEL,
-            "harga": Mobil.HARGA,
+            "deskripsi": self.deskripsi_model,
+            "harga": self.harga,
             "spesifikasi": self.spesifikasi(),
             "fitur": self.fitur()   
         }

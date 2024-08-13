@@ -10,7 +10,12 @@ class Spesifikasi(ABC):
 
     @abstractmethod
     def serialize(self):
-        pass
+        return {
+            "engine": f"{self.engine} cc",
+            "gas": self.gas,
+            "power": f"{self.power} hp",
+            "transmission": self.transmission
+        }
 
 
 class Fitur(ABC):
@@ -24,7 +29,13 @@ class Fitur(ABC):
 
     @abstractmethod
     def serialize(self):
-        pass
+        return {
+            "power_outlet": self.power_outlet,
+            "cruise_control": self.cruise_control,
+            "keyless": self.keyless,
+            "airbag": self.airbag,
+            "sunroof": self.sunroof
+        }
 
 
 # Merk Mobil
@@ -47,10 +58,10 @@ class Mobil(MerkMobil, Spesifikasi, Fitur):
         Mobil.HARGA = harga
 
     def spesifikasi(self):
-        return f"Spesifikasi: \n\tEngine: {self.engine}cc \n\tGas: {self.gas} \n\tPower: {self.power}hp \n\tTransmission: {self.transmission}\n"
+        return Spesifikasi.serialize(self)
 
     def fitur(self):
-        return f"Fitur: \n\tPower Outlet: {self.power_outlet} \n\tCruise Control: {self.cruise_control} \n\tKeyless: {self.keyless} \n\tAirbag: {self.airbag} \n\tSunroof: {self.sunroof}\n"
+        return Fitur.serialize(self)
 
     # method serialize return dictionary
     def serialize(self):
@@ -59,19 +70,8 @@ class Mobil(MerkMobil, Spesifikasi, Fitur):
             "model": self.model,
             "deskripsi": Mobil.DESKRIPSI_MODEL,
             "harga": Mobil.HARGA,
-            "spesifikasi": {
-                "engine": f"{self.engine} cc",
-                "gas": self.gas,
-                "power": f"{self.power} hp",
-                "transmission": self.transmission
-            },
-            "fitur": {
-                "power_outlet": self.power_outlet,
-                "cruise_control": self.cruise_control,
-                "keyless": self.keyless,
-                "airbag": self.airbag,
-                "sunroof": self.sunroof
-            }
+            "spesifikasi": self.spesifikasi(),
+            "fitur": self.fitur()   
         }
 
 

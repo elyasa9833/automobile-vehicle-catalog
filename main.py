@@ -24,4 +24,3 @@ if __name__ == "__main__":
         if not args.brand or not args.model:
             parser.error("Both --brand and --model arguments are required for the 'show_details' command")
         print(json.dumps(dealer.show_car_model_detail(args.brand, args.model), indent=4))
-        

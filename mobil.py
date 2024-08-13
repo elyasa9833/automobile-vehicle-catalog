@@ -55,7 +55,7 @@ class Mobil(MerkMobil, Spesifikasi, Fitur):
     # method serialize return dictionary
     def serialize(self):
         return {
-            "merk": self.merk,
+            "brand": self.merk,
             "model": self.model,
             "deskripsi": Mobil.DESKRIPSI_MODEL,
             "harga": Mobil.HARGA,
@@ -75,13 +75,8 @@ class Mobil(MerkMobil, Spesifikasi, Fitur):
         }
 
 
-sigra = Mobil("Daihatsu", "Sigra", "Mobil Keluarga", 200000000, 1200, "Pertalite", 100, "Manual", False, False, False, True, False)
-xpander = Mobil("Mitsubishi", "Xpander", "Mobil Keluarga", 300000000, 1500, "Pertamax", 150, "Automatic", True, True, False, True, False)
-
-# print(sigra.serialize())
-# print(sigra.spesifikasi())
-# print(sigra.fitur())
-
-# print(xpander.serialize())
-# print(xpander.spesifikasi())
-# print(xpander.fitur())
+cars = [
+    Mobil("Daihatsu", "Sigra", "Mobil Keluarga", 200000000, 1200, "Pertalite", 100, "Manual", False, False, False, True, False),
+    Mobil("Mitsubishi", "Xpander", "Mobil Keluarga", 300000000, 1500, "Pertamax", 150, "Automatic", True, True, False, True, False),
+    Mobil("Daihatsu", "Terios", "Mobil SUV", 250000000, 1500, "Pertamax", 150, "Automatic", True, True, False, True, False)
+]

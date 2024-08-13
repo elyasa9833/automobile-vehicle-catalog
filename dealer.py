@@ -1,5 +1,4 @@
 from mobil import cars
-import json
 
 class Dealer:
     def show_all_cars(self):
@@ -9,16 +8,16 @@ class Dealer:
 
     def show_all_car_models(self, brand):
         # Implement code to show all car models for a specific brand
-        i=1
+        car_models = []
         for car in cars:
             if car.merk == brand:
-                print(f"{i}. Model: {car.model}")
-                i+=1
+                car_models.append(car.model)
+        return car_models
 
     def show_car_model_detail(self, brand, model):
         # Implement code to show car model detail for a specific brand and model
         for car in cars:
             if car.merk == brand and car.model == model:
-                print(json.dumps(car.serialize(), indent=4))
-                break
+                return car.serialize()
+        return None
 

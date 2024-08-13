@@ -1,4 +1,5 @@
 import argparse
+import json
 from dealer import Dealer
 
 dealer = Dealer()
@@ -16,9 +17,11 @@ if __name__ == "__main__":
     elif args.command == "show_models":
         if not args.brand:
             parser.error("The --brand argument is required for the 'show_models' command")
-        dealer.show_all_car_models(args.brand)
+        for car in dealer.show_all_car_models(args.brand):
+            print(f"Model: {car}")
 
     elif args.command == "show_details":
         if not args.brand or not args.model:
             parser.error("Both --brand and --model arguments are required for the 'show_details' command")
-        dealer.show_car_model_detail(args.brand, args.model)
+        print(json.dumps(dealer.show_car_model_detail(args.brand, args.model), indent=4))
+        
